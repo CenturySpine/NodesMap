@@ -1,0 +1,82 @@
+﻿<Window x:Class="NodeMap.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NodeMap"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="2"></Setter>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Margin" Value="2"></Setter>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="2"></Setter>
+        </Style>
+        <Style TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="2"></Setter>
+        </Style>
+        <Style TargetType="{x:Type Grid}">
+            <Setter Property="Margin" Value="2"></Setter>
+        </Style>
+        <Style TargetType="{x:Type Canvas}">
+            <Setter Property="Margin" Value="2"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--<Slider Minimum="1" Maximum="20" Value="15" ValueChanged="RangeBase_OnValueChanged" x:Name="zoom"></Slider>-->
+        <Canvas Grid.Row="1"    x:Name="NodesMap" Background="White"></Canvas>
+        <StackPanel Grid.Row="2"  HorizontalAlignment="Center" >
+            <TextBlock x:Name="nodeDisplay" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="2"></TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBlock Text="proximity radius"></TextBlock>
+                <TextBox Width="50" x:Name="inputProximity" Text="30"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBlock Text="node spacing"></TextBlock>
+                <TextBox Width="50" x:Name="inputNodeSpacing" Text="20"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBlock Text="node offset"></TextBlock>
+                <TextBox Width="50" x:Name="inputNodeOffset" Text="20"></TextBox>
+                <CheckBox Content="Offset Nodes" x:Name="checkOffsetNodes"></CheckBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBlock Text="start"></TextBlock>
+                <TextBox Width="50" x:Name="inputStartX"></TextBox>
+                <TextBox Width="50" x:Name="inputStartY"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBlock Text="end"></TextBlock>
+                <TextBox Width="50" x:Name="inputEndX"></TextBox>
+                <TextBox Width="50" x:Name="inputEndY"></TextBox>
+            </StackPanel>
+
+            <Button x:Name="generate" Click="Generate_OnClick" Content="generate"></Button>
+            <StackPanel>
+                <RadioButton Content="No heuristic" x:Name="h_no" GroupName="heuris"></RadioButton>
+                <RadioButton Content="Absolute distance" x:Name="h_ad" GroupName="heuris"></RadioButton>
+                <StackPanel >
+                    <RadioButton Content="Absolute distance with line of sight" x:Name="h_adls"  IsChecked="True" GroupName="heuris"></RadioButton>
+                    <RadioButton Content="Absolute distance with redundency" x:Name="h_adlsc"  IsChecked="True" GroupName="heuris"></RadioButton>
+                    <TextBox Width="30" x:Name="obstModifierInput" Text="2"></TextBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="findPath" Click="FindPath_OnClick" Content="Find Path"></Button>
+                <Button x:Name="stopPath" Click="StopPath_OnClick" Content="STOP"></Button>
+                <TextBlock x:Name="displayfindPathTime" Width="80"></TextBlock>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>
